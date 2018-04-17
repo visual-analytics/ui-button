@@ -1,6 +1,6 @@
 "use strict"
 import { BaseView as UIBaseView } from "@visual-analytics/ui-base"
-import { EventDispatcher,element } from "xassist"
+import { EventDispatcher,dom} from "xassist"
 
 function UIButtonView(containerElm){
 	
@@ -83,10 +83,10 @@ UIButtonView.prototype.setState=function(state){
 }
 UIButtonView.prototype.show=function(visible){
 	if (visible){
-		element(this.element).removeClass('xHidden');
+		dom(this.element).removeClass('xHidden');
 	}
 	else{
-		element(this.element).addClass('xHidden');
+		dom(this.element).addClass('xHidden');
 	}
 }
 UIButtonView.prototype.disable=function(disabled){
