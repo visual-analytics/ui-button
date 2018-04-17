@@ -1,0 +1,462 @@
+
+/*colorpalette:
+normal: 500: #2196F3
+pressed: 700: #1976D2
+disabled text: 30% #FFFFFF : #d4d4d4
+disabled background: 12% #FFFFFF #1f1f1f
+focus:: 12% #000000 shade over color
+*/
+/*
+.xRaisedButton.xFlatButton{
+	background-color:transparent;
+	box-shadow: none;
+	color:#2196F3;
+}
+.xRaisedButton.xFlatButton:after{
+	background-color:rgba(150, 150, 150, .5);
+}
+
+.xRaisedButton.xFlatButton:hover:not(:disabled),
+.xFlatSegment>button.xFlatButton:hover:not(:disabled),
+.xRaisedButton.xFlatButton.testHover:not(:disabled){
+	background-color:#DFDFDF;
+	color:#1976D2;
+}*/
+
+
+/*general settings for button*/
+button{
+	/*needed for empty button eg only image, in segments it gets offset*/
+	vertical-align:top;
+	font-family:Roboto, Arial, Helvetica;
+}
+/*raised button properties*/
+.xRaisedButton,
+.xRaisedSegment>button,
+.xRaisedButton[data-selected='true'],
+.xRaisedSegment>button[data-selected='true']{
+	color:white;
+	background-color:#2196F3;
+}
+
+/*raised button properties*/
+.xRaisedButton.xSelectButton:not([data-selected='true']),
+.xRaisedSegment>button.xSelectButton:not([data-selected='true']),
+.xFlatButton,
+.xFlatSegment>button{
+	color:#2196F3;
+	background-color:transparent;
+}
+.xFlatButton.xInversedColor,
+.xFlatSegment.xInversedColor{
+	color:white;
+}
+/*box shadow*/
+.xRaisedSegment,
+.xRaisedButton{
+	box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+}
+.xFlatButton,
+.xFlatSegment>button{
+	/*specific colors*/
+	box-shadow: none;
+}
+.xFlatButton.xSelectButton,
+.xFlatSegment>button.xSelectButton{
+	/*specific colors*/
+	color:#595959;
+}
+.xFlatButton.xSelectButton.xHighlight,
+.xFlatSegment>button.xSelectButton.xHighlight{
+	/*specific colors*/
+	color:#2196F3;
+}
+.xFlatButton.xSelectButton.xDownlight,
+.xFlatSegment>button.xSelectButton.xDownlight{
+	/*specific colors*/
+	color:#717171;
+}
+.xFlatButton.xSelectButton[data-selected='true'],
+.xFlatSegment>button.xSelectButton[data-selected='true']{
+	/*specific colors*/
+	color:white;
+	background-color:#2196F3;
+}
+.xRaisedButton,
+.xFlatButton,
+.xRaisedSegment>button,
+.xFlatSegment>button{
+	white-space:nowrap;
+	height:36px;
+	cursor: pointer;
+	border: none;
+	border-width:0px;
+	font-size:14pt;
+	position: relative;
+	overflow:hidden;
+}
+.xRaisedButton.xRoundButton,
+.xFlatButton.xRoundButton{
+	overflow:visible;
+}
+/*dense button is smaller so overrides standard raisedbutotn*/
+.xRaisedButton.xDenseButton,
+.xFlatButton.xDenseButton,
+.xRaisedSegment.xDenseSegments>button,
+.xFlatSegment.xDenseSegments>button{
+	height:32px;
+	font-size:13pt;
+}
+
+/*dense button is smaller so overrides standard raisedbutotn*/
+.xRaisedButton.xSquareButton,
+.xFlatButton.xSquareButton,
+.xRaisedSegment.xSquareSegments>button,
+.xFlatSegment.xSquareSegments>button{
+	height:80px;
+	font-size:11pt;
+}
+
+/*normal buttons */
+.xRaisedButton:not(.xRoundButton),
+.xFlatButton:not(.xRoundButton){	
+	padding-left:8px; /*padding for segmetn set specific on button first*/
+	padding-right:8px;/*padding for segmetn set specific on last button*/
+	padding-top:0px;
+	padding-bottom:0px;
+}
+/*normal buttons */
+.xRaisedButton.xRoundButton,
+.xFlatButton.xRoundButton{	
+	padding-left:1px; /*padding for segmetn set specific on button first*/
+	padding-right:1px;/*padding for segmetn set specific on last button*/
+	padding-top:0px;
+	padding-bottom:0px;
+}
+/*margins*/
+.xRaisedSegment,
+.xFlatSegment,
+.xRaisedButton:not(.xRoundButton),
+.xFlatButton:not(.xRoundButton){
+	border-radius:2px;
+	min-width:64px;
+}
+.xRaisedSegment,
+.xFlatSegment,
+.xRaisedButton,
+.xFlatButton{
+	margin-left:4px;
+	margin-top:8px;
+	margin-bottom:8px;
+	margin-right:4px;
+}
+.xRaisedButton.xRoundButton,
+.xFlatButton.xRoundButton{
+	border-radius:100%;
+	width:36px;
+}
+
+/*for segemented buttons*/
+.xRaisedSegment.xSquareSegments,
+.xFlatSegment.xSquareSegments{
+	height:80px;
+}
+
+.xRaisedSegment,
+.xFlatSegment{
+	border-width:0px;
+	height:36px;
+	display:inline-block;
+	white-space:nowrap;
+	padding:0;
+}
+.xRaisedSegment.xDenseSegments,
+.xFlatSegment.xDenseSegments{
+	/*override for dense button*/
+	height:32px;
+}
+.xRaisedSegment:not(:disabled):hover{
+	box-shadow:  0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.xRaisedSegment.xDropdownSegment>button.xDropdown:last-of-type,
+.xFlatSegment.xDropdownSegment>button.xDropdown:last-of-type{
+	/*override padding to add surplus for dropdown button in segmented view*/
+	padding-right:8px;
+	padding-left:8px;
+}
+.xRaisedSegment.xSquareSegments.xDropdownSegment>button.xDropdown:last-of-type,
+.xFlatSegment.xSquareSegments.xDropdownSegment>button.xDropdown:last-of-type{
+	/*override line height*/
+	height:100%;
+	line-height:80px;
+	display:inline-block;
+	font-size:14pt;
+}
+.xRaisedSegment>button,
+.xFlatSegment>button{
+	/*set correct dimensions*/
+	/*overrides default for .raisedButtons*/
+	margin:0px;/*set in segment*/
+	border-radius:0px;
+	display:inline-block;
+	min-width:0px; /*for small image buttons*/
+	box-shadow:none; /*arranged by container bRaisedSegment*/
+	padding-right:0px;
+	padding-left:0px;	
+}
+.xRaisedSegment>button:first-of-type,
+.xFlatSegment>button:first-of-type{
+	/*first butotn has left padding and left rounded corners*/
+	border-radius:2px 0px 0px 2px; 
+	padding-left:8px;
+	
+}
+.xRaisedSegment>button:last-of-type,
+.xFlatSegment>button:last-of-type{
+	/*last button has right padding and right rounded corners
+	and border on the right is canceled*/
+	border-radius:0px 2px 2px 0px;
+	padding-right:8px;
+	
+}
+.xRaisedSegment>button:not(:first-of-type){
+	/*border between segments*/
+	border-left:1px white solid;
+}
+.xFlatSegment>button:not(:first-of-type){
+	/*border between segments*/
+	border-left:1px #2196F3 solid;
+}
+
+.xRaisedSegment>button.xSelectButton:not([data-selected='true'])~button.xSelectButton:not([data-selected='true']){
+	border-left:1px #2196F3 solid;
+}
+
+
+/*inner padding on bLabel and bImage*/
+.xRaisedButton>*,
+.xFlatButton>*,
+.xRaisedSegment>button>*,
+.xFlatSegment>button>*{
+	/*set corretc heights, width and padding for innercontainers*/
+	display: inline-block;
+	height:100%;
+	padding-left:8px;
+	padding-right:8px;
+	text-align:center;
+	line-height:36px;
+}
+
+.xRaisedButton.xRoundButton>*,
+.xFlatButton.xRoundButton>*{
+	padding-left:0px;
+	padding-right:0px;
+	display:block;
+}
+/*smaller button override for dense*/
+.xRaisedButton.xDenseButton>*,
+.xFlatButton.xDenseButton>*,
+.xRaisedSegment.xDenseSegments>button>*{
+	line-height:32px;
+}
+/*set order of label and image*/
+.xRaisedButton.xSquareButton,
+.xFlatButton.xSquareButton,
+.xRaisedSegment.xSquareSegments>button,
+.xFlatSegment.xSquareSegments>button{
+	display:inline-flex;
+	flex-direction:column;
+}
+/*segmented button container should be row-flex*/
+.xRaisedSegment.xSquareSegments,
+.xFlatSegment.xSquareSegments{
+	display:inline-flex;
+	flex-direction:row;
+}
+/*dense button is smaller so overrides standard raisedbutotn*/
+.xRaisedButton.xSquareButton>*,
+.xFlatButton.xSquareButton>*,
+.xRaisedSegment.xSquareSegments>button>*,
+.xFlatSegment.xSquareSegments>button>*{
+	height:48px;
+	line-height:48px;
+	display: block;
+}
+/*for only child*/
+.xRaisedButton.xSquareButton>*:only-child,
+.xFlatButton.xSquareButton>*:only-child,
+.xRaisedSegment.xSquareSegments>button>*:only-child,
+.xFlatSegment.xSquareSegments>button>*:only-child{
+	height:100%;
+	line-height:80px;
+}
+/*dense button is smaller so overrides standard raisedbutotn*/
+.xRaisedButton.xSquareButton>*:not(.xImage),
+.xFlatButton.xSquareButton>*:not(.xImage),
+.xRaisedSegment.xSquareSegments>button>*:not(.xImage),
+.xFlatSegment.xSquareSegments>button>*:not(.xImage){
+	height:30px;
+	line-height:30px;
+	order:2;
+}
+
+
+
+
+/*padding and positioning when label and image present*/
+.xRaisedButton.xLabelPositionRight>.xImage,
+.xFlatButton.xLabelPositionRight>.xImage,
+.xRaisedSegment>button.xLabelPositionRight>.xImage,
+.xFlatSegment>button.xLabelPositionRight>.xImage{
+	/*set position of image to the extreme left*/
+	float:left;
+}
+.xRaisedButton:not(.xSquareButton):not(.xLabelPositionRight)>.xLabel~.xImage,
+.xFlatButton:not(.xSquareButton):not(.xLabelPositionRight)>.xLabel~.xImage,
+.xRaisedSegment:not(.xSquareSegments)>button:not(.xLabelPositionRight)>.xLabel~.xImage,
+.xFlatSegment:not(.xSquareSegments)>button:not(.xLabelPositionRight)>.xLabel~.xImage{
+	/*set padding between label and image to 8px instead of 8+8
+	only when there's image and label*/
+	padding-left:0px;
+}
+.xRaisedButton.xLabelPositionRight>.xLabel~.xImage,
+.xFlatButton.xLabelPositionRight>.xLabel~.xImage,
+.xRaisedSegment>button.xLabelPositionRight>.xLabel~.xImage,
+.xFlatSegment>button.xLabelPositionRight>.xLabel~.xImage{
+	/*set padding between label and image to 8px instead of 8+8
+	only when there's image and label*/
+	padding-right:0px;
+}
+
+
+
+/*effects for focus, click, disabled*/
+.xRaisedButton:focus,
+.xRaisedSegment>button:focus,
+.xRaisedButton.testFocus{
+	/*background-color:rgba(33,150,243,0.78);*/
+	opacity:0.78;
+}
+.xFlatButton:not(.xInversedColor):focus,
+.xFlatSegment:not(.xInversedColor)>button:focus,
+.xFlatButton:not(.xInversedColor).testFocus{
+	opacity:0.78;
+}
+
+.xFlatButton:not(.xInversedColor):hover:not(:disabled):not(.xSelectButton),
+.xFlatSegment:not(.xInversedColor)>button:hover:not(:disabled):not(.xSelectButton),
+.xFlatButton:not(.xInversedColor).testHover:not(:disabled):not(.xSelectButton){
+	background-color:#DFDFDF;
+	color:#1976D2;
+}
+
+.xFlatButton.xSelectButton:not([data-selected='true']):hover:not(:disabled),
+.xFlatSegment>button.xSelectButton:not([data-selected='true']):hover:not(:disabled),
+.xFlatButton.xSelectButton:not([data-selected='true']).testHover:not(:disabled){
+	color:#1976D2;
+}
+
+
+.xRaisedButton:not(:disabled):hover,
+.xRaisedButton:not(:disabled).testHover {
+	/*only for normal button
+	for segmented the hover acts on complete set of button and not on individual buttons each*/
+	box-shadow:  0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.xRaisedButton:active,
+.xRaisedSegment>button:active,
+.xRaisedButton.testActive{
+	background-color:#1976D2;
+}
+.xFlatButton:not(.xInversedColor):active:not(:disabled),
+.xFlatSegment:not(.xInversedColor)>button:active:not(:disabled),
+.xFlatButton:not(.xInversedColor).testActive:not(:disabled){
+	background-color:#CCCCCC;
+}
+.xRaisedButton:disabled,
+.xRaisedSegment>button:disabled
+{
+	background-color:#DFDFDF;
+}
+.xFlatButton:disabled,
+.xFlatSegment>button:disabled,
+.xRaisedButton:disabled,
+.xRaisedSegment>button:disabled{
+	color:#9F9F9F;
+	box-shadow:none;
+	cursor: default;
+}
+	
+
+
+/*animation on click*/
+
+.xRaisedButton:after,
+.xRaisedSegment>button:after{
+	background-color: rgba(255, 255, 255, .5);
+}
+.xFlatButton:after,
+.xFlatSegment>button:after{
+	background-color:rgba(150, 150, 150, .5);
+}
+
+
+.xRaisedButton:after,
+.xRaisedSegment>button:after,
+.xFlatButton:after,
+.xFlatSegment>button:after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+
+
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.xRaisedButton:not(.xRoundButton):focus:not(:active):after,
+.xFlatButton:not(.xRoundButton):focus:not(:active):after,
+.xRaisedSegment>button:focus:not(:active):after,
+.xFlatSegment>button:focus:not(:active):after,
+.xRaisedButton:not(.xRoundButton).testFocus:not(:active):after,
+.xRippleEffect:focus:not(:active):after{
+
+  animation: ripple 2s ease-out;
+}
+.xRippleEffect{
+	position:relative;
+}
+.xRippleEffect:after{
+	background-color:rgba(150, 150, 150, .5);
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	opacity: 0;
+	border-radius: 100%;
+	transform: scale(1, 1) translate(-50%);
+	transform-origin: 50% 50%;
+}
+/*TO DO focus and active does not work li, active seems te be to quick*/
