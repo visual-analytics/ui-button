@@ -1,0 +1,200 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+$boxShadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+
+%button-shadow {
+	box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+	&:not(:disabled):hover{
+			box-shadow:  0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
+	&:disabled{
+		box-shadow:none;
+	}
+}
+
+$main-color-button:$main-color;
+$main-color-button-active:$main-color-dark;
+
+
+button {
+	vertical-align: top;
+	font-family: $text-font-stack;
+	white-space: nowrap;
+	cursor: pointer;
+	border: none;
+	border-width: 0px;
+	@include default-margin;
+	&:disabled{
+		cursor:default;
+	}
+}
+//colors
+.xRaisedButton{
+	
+	color: white;
+	background-color: $main-color-button;
+	&:active{
+		background-color: $main-color-dark;
+	}
+	&.xSelectButton:not([data-selected='true']) {
+		color: $main-color-button;
+		background-color:white;
+	}
+	&:disabled{
+		background-color: $gray-light;
+		color: $gray;
+	}
+	&:focus {
+		opacity: 0.78;
+	}
+}
+
+/*.xFlatButton.xSelectButton.xHighlight {
+	color:$main-color-button;
+}
+.xFlatButton.xSelectButton.xDownlight {
+	color: $gray-dark;
+}
+.xFlatButton.xInversedColor {
+	color: white;
+}
+*/
+.xFlatButton{
+	color: $main-color-button;
+	background-color:transparent;
+	&:active{
+		background-color:  $gray-light;
+	}
+	&.xSelectButton:not([data-selected='true']) {
+		color: $gray-dark;
+		background-color:white;
+		&:hover:not(:disabled) {
+			color:$main-color-dark;
+		}
+	}
+	&.xSelectButton[data-selected='true'] {
+		color: white;
+		background-color: $main-color-button;
+	}
+	&:disabled{
+		background-color:transparent;
+		color: $gray;
+	}
+	&:focus/*:not(.xInversedColor)*/ {
+		opacity: 0.78;
+	}
+}
+//button sizes and padding
+.xRaisedButton,.xFlatButton{
+	height: 36px;
+	font-size: 14pt;
+	&:not(.xRoundButton) {
+		overflow:hidden;
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 2px;
+		min-width: 64px;
+	}
+	&.xRoundButton { 
+		overflow: visible;
+		padding-left: 1px;
+		padding-right: 1px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 100%;
+		width:36px;
+	}
+}
+//dense button heights
+.xDenseButton {
+	height: 32px;
+	font-size: 13pt;
+	>* {
+		line-height: 32px;
+	}
+}
+.xSquareButton{
+	height: 80px;
+	font-size: 11pt;
+}
+
+//label positioning
+.xLabelPositionRight{
+	>.xImage {
+		float: left;
+	}
+	>.xLabel~.xImage {
+		padding-right: 0px;
+	}
+}
+:not(.xSquareButton):not(.xLabelPositionRight){
+	>.xLabel~.xImage {
+		padding-left: 0px;
+	}
+}
+
+
+//animations
+.xRaisedButton {
+	@extend %button-shadow;
+	@extend %animation-ripple;
+	@extend %animation-ripple-darkbackground;
+}
+.xFlatButton {
+	@extend %animation-ripple;
+	@extend %animation-ripple-lightbackground;
+}
+//inner elements	
+.xFlatButton,.xRaisedButton{
+	>* {
+		display: inline-block;
+		height: 100%;
+		padding-left: 8px;
+		padding-right: 8px;
+		text-align: center;
+		line-height: 36px;
+	}
+	
+}
+
+
+
+.xRoundButton {
+	
+	>* {
+		padding-left: 0px;
+		padding-right: 0px;
+		display: block;
+	}
+}
+
+
+.xSquareButton {
+	
+	display: inline-flex;
+	flex-direction: column;
+	>* {
+		height: 48px;
+		line-height: 48px;
+		display: block;
+		&:only-child {
+			height: 100%;
+			line-height: 80px;
+		}
+		&:not(.xImage) {
+			height: 30px;
+			line-height: 30px;
+			order: 2;
+		}
+	}
+}
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+//inner elements	
+.xFlatButton,.xRaisedButton{
+	>* {
+		display: inline-block;
+		height: 100%;
+		padding-left: 8px;
+		padding-right: 8px;
+		text-align: center;
+		line-height: 36px;
+	}
+	
+}

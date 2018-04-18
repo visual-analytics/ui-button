@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+$boxShadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+
+%button-shadow {
+	box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+	&:not(:disabled):hover{
+			box-shadow:  0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
+	&:disabled{
+		box-shadow:none;
+	}
+}
+
+$main-color-button:$main-color;
+$main-color-button-active:$main-color-dark;
+
+
+
+
+
+

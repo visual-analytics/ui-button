@@ -1,0 +1,287 @@
+"use strict"
+
+var { id, EventDispatcher, object }=require("xassist")
+var jsdom = require("jsdom");
+var doc=new jsdom.JSDOM("<!DOCTYPE html><div id='container'></h1>")
+global.window=doc.window;
+global.document =global.window.document;
+
+function UIBaseModel(defaultConfig,defaultState,defaultContent,idPrefix){
+	EventDispatcher.call(this);
+	this.config=defaultConfig||{};
+	if(this.config){
+		this.config.id=(typeof idPrefix==="string"?id(idPrefix):id())
+	}
+
+	this.state=defaultState||false;
+
+	this.content=defaultContent||false
+	this.initialized=false
+}
+UIBaseModel.prototype = Object.create(EventDispatcher.prototype); // Here's where the inheritance occurs
+UIBaseModel.prototype.constructor = UIBaseModel;
+UIBaseModel.prototype.init=function(config,state,content){
+	this.setConfiguration(config);
+	this.setState(state);
+	this.setContent(content);
+	this.registerEvents();
+	this.initialized=true;
+}
+UIBaseModel.prototype.registerEvents=function(){
+	if(this.state){
+		this.registerEvent("stateChanged");
+	}
+	if(this.content){
+		this.registerEvent("contentChanged");
+	}
+}
+UIBaseModel.prototype.setConfiguration=function(config){
+	object(this.config).mergeUnique(config);
+}
+
+var _setStateContent=function(type){
+	return function(key,value){
+		var oldValue;
+		if(!~['state','content'].indexOf(type)||!this[type]){
+			//default returnvalue is fals indicating nothing changed
+			return false;
+		}
+		else if(typeof key==="object"){
+			//key is an object
+			//no events are fired
+			//is used during init
+			object(this[type]).mergeUnique(key);
+			return true;
+		}
+		else if(this[type].hasOwnProperty(key)){
+			oldValue=this.content[key];
+			this[type][key]=value;
+			return this._checkStateContentChanged(type,oldValue,value,key,{})
+		}
+		//default returnvalue is fals indicating nothing changed
+		return false;
+	}
+}
+
+UIBaseModel.prototype.setContent=_setStateContent('content')
+UIBaseModel.prototype.setState=_setStateContent('state')
+UIBaseModel.prototype.getConfiguration=function(){
+	return this.config;
+}
+UIBaseModel.prototype.getState=function(){
+	return this.state;
+}
+UIBaseModel.prototype.getContent=function(){
+	return this.content;
+}
+UIBaseModel.prototype._checkStateContentChanged=function(type,oldValue,newValue,key,details){
+	if(this.initialized&&oldValue!==newValue){
+		this.fire(type+"Changed",{
+			type:key,
+			oldValue:oldValue,
+			newValue:newValue,
+			details:details
+		});
+		return true;
+	}
+	return false
+}
+
+var _defaultConfig={
+		labelVisible:false
+	},
+	_defaultState={
+		disabled:false,
+		selected:false
+	},
+	_defaultContent={
+		label:"label",
+		image:""
+	}
+var testConfig={
+	labelVisible:true
+}
+
+function UIButtonModel(config,state,content){
+	//baseClass.call(this)
+	UIBaseModel.call(this,_defaultConfig,_defaultState,_defaultContent,"b")
+	this.init(config,state,content)
+}
+UIButtonModel.prototype = Object.create(UIBaseModel.prototype); // Here's where the inheritance occurs
+UIButtonModel.prototype.constructor = UIButtonModel;
+
+function UIBaseView(baseClass,containerElm,config){
+	this.initialized=false;
+	this.containerElm=containerElm;
+	this.baseClass=baseClass||false;
+	//this.init(config);
+}
+
+UIBaseView.prototype.init=function(config,content){
+	//overrides parentClass init-method
+	this.element=this.createElement(config);
+	this.initialized=true;
+}
+
+UIBaseView.prototype.createElement=function(config,content){
+	var elm=document.createElement("div"),className="";
+	elm.id=config.id;
+	elm.className=this.getClassName(config);
+	elm.innerHTML=this.getContent(content,config);
+	return elm;
+}
+
+UIBaseView.prototype.getContent=function(content){
+	return "";
+}
+UIBaseView.prototype.getClassName=function(config){
+	return this.className||"";
+}
+
+UIBaseView.prototype.render=function(state){
+	console.log("RENDERING View")
+	if(state){
+		this.setState(state);
+	}
+	if(this.initialized){
+		this.containerElm.appendChild(this.element);
+		return true;
+	}
+	return false;
+}
+UIBaseView.prototype.setState=function(state){
+	/*this.disable(state.disabled);
+	this.select(state.selected);
+	this.show(state.visible);*/
+		
+}
+function UIButtonView(containerElm,config,content){
+	UIBaseView.call(this,"xButton",containerElm)
+	this.init(config,content)
+}
+UIButtonView.prototype = Object.create(UIBaseView.prototype); // Here's where the inheritance occurs
+UIButtonView.prototype.constructor = UIButtonView;
+
+UIButtonView.prototype.setState=function(state){
+	/*this.disable(state.disabled);
+	this.select(state.selected);
+	this.show(state.visible);*/
+	console.log("setting state for view");
+}
+
+
+
+function UIBaseController(model,view){
+	EventDispatcher.call(this);
+	var me=this;
+	this.initialized=false;
+	this.model=model;
+	
+	this.view=view
+	
+	//this.onEvent=new Event(this);
+	this.init();
+}
+UIBaseController.prototype = Object.create(EventDispatcher.prototype); // Here's where the inheritance occurs
+UIBaseController.prototype.constructor = UIBaseController;
+
+
+UIBaseController.prototype.init=function(){
+	//this.model.init(config,state,content);
+	//this.addChildren(options,data);
+	//this.attachChildEvents();
+	
+	//this.setViewContent();
+	this.addListeners();
+	this.registerEvents();
+	this.initialized=true;
+}
+UIBaseController.prototype.registerEvents=function(){
+	this.registerEvent("change");
+}
+UIBaseController.prototype.render=function(){
+	this.view.render(this.model.getState());
+}
+UIBaseController.prototype.addListeners=function(){
+	this.model.on("stateChanged",function(state){
+		this.fire("event",state);
+		console.log('stateChanged');
+		console.log(arguments)
+	});
+	this.model.on("contentChanged",function(){
+		console.log("contentChanged");
+		console.log(arguments)
+	});
+}
+/*
+CardController.prototype.setViewContent=function(){
+	//TO DO Change to htmlrenderer or text renderer
+	if(this.children.content==="text"){
+		this.view.setContent(this.model.getContent());
+	}
+	else{
+		//do nothing renderer takes care
+	}
+}
+CardController.prototype.render=function(){
+	if(this.children.header){
+		this.children.header.render();
+	}
+	if(this.children.content!=="text"){
+		this.children.content.render();
+	}
+	this.view.render(this.model.getState());
+}
+CardController.prototype.addChildren=function(options,data){
+	var containers=this.view.containers;
+	if(this.model.config.hasHeader){
+		//to do set as templating engine internal to titlecontroller
+		options.header.title=$b.template(options.header.title,options);
+		options.header.description=$b.template(options.header.description,options);
+		this.children.header=new TitleController(options.header,containers.header);
+	}
+	if(options.hasOwnProperty('content')){
+		if(data&&options.content.type==="dataRenderer"){
+			this.children.content=DataRenderer.create(options.content.renderer||"table",
+				options.content.options,
+				containers.content,
+				data);
+		}
+		else{
+			this.children.content="text";
+		}
+	}
+	
+};
+CardController.prototype.handleEvent=function(event){
+	if(event.event==="editCard"){
+		this.onEvent.notify({event:"openModal",value:"editCard"});
+	}
+}
+CardController.prototype.attachChildEvents=function(){
+	var me=this;
+	Object.keys(this.children).forEach(function(child){
+		if(this.children[child]&&this.children[child].hasOwnProperty("onEvent")){
+			this.children[child].onEvent.attach(function(sender,event){
+				me.handleEvent(event)
+			});
+		}
+	},this);
+	
+}
+*/
+function UIButtonController(containerElm,config,state,content){
+	var model=new UIButtonModel(config,state,model);
+	var view=new UIButtonView(containerElm,model.getConfiguration(),model.getContent());
+	UIBaseController.call(this,model,view);
+}
+UIButtonController.prototype = Object.create(UIBaseController.prototype); // Here's where the inheritance occurs
+UIButtonController.prototype.constructor = UIBaseController;
+var cont=document.getElementById("container");
+
+var a=new UIButtonController(cont,testConfig,{testState:true});
+a.model.setContent("label","new Label")
+a.model.setState({test:true})
+console.dir(a)
+a.render();
+console.dir(a,{depth:null})

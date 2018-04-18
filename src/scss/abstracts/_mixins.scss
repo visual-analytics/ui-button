@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Sets the lineheight to the specified height and the height so we get centered vertical text
+/// @param {Length} $height - height of line-height and component eg 48px;
+@mixin set-line-height($height) {
+  height:$height;
+  line-height:$height
+}
+
+@mixin default-margin {
+	margin-left: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 4px;
+}

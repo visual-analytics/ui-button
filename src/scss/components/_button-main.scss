@@ -1,0 +1,12 @@
+button {
+	vertical-align: top;
+	font-family: $text-font-stack;
+	white-space: nowrap;
+	cursor: pointer;
+	border: none;
+	border-width: 0px;
+	@include default-margin;
+	&:disabled{
+		cursor:default;
+	}
+}

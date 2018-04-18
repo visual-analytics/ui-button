@@ -1,0 +1,12 @@
+//animations
+.xRaisedButton {
+	@extend %button-shadow;
+	@extend %animation-ripple;
+	@extend %animation-ripple-darkbackground;
+}
+.xFlatButton {
+	@extend %animation-ripple;
+	@extend %animation-ripple-lightbackground;
+}
+
+

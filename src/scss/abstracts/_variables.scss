@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+
+
+
+/// Regular font family
+/// @type List
+$text-font-stack: 'Roboto', 'Arial', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+
+/// main colour (500)
+/// @type Color
+$main-color: #2196F3 !default;
+
+/// dark tone for main colour (700)
+/// @type Color
+$main-color-dark: #1976D2 !default;
+
+/// gray colour (500)
+/// @type Color
+$gray: #9E9E9E !default;
+
+/// dark tone for gray colour (700)
+/// @type Color
+$gray-dark: #616161 !default;
+
+
+
+/// light tone for gray colour (300)
+/// @type Color
+$gray-light: #E0E0E0 !default;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;

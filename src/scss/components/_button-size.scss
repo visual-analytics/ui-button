@@ -1,0 +1,83 @@
+//button sizes and padding
+.xRaisedButton,.xFlatButton{
+	height: 36px;
+	font-size: 14pt;
+	&:not(.xRoundButton) {
+		overflow:hidden;
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 2px;
+		min-width: 64px;
+	}
+	&.xRoundButton { 
+		overflow: visible;
+		padding-left: 1px;
+		padding-right: 1px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 100%;
+		width:36px;
+	}
+}
+//dense button heights
+.xDenseButton {
+	height: 32px;
+	font-size: 13pt;
+	>* {
+		line-height: 32px;
+	}
+}
+.xSquareButton{
+	height: 80px;
+	font-size: 11pt;
+}
+
+//label positioning
+.xLabelPositionRight{
+	>.xImage {
+		float: left;
+	}
+	>.xLabel~.xImage {
+		padding-right: 0px;
+	}
+}
+:not(.xSquareButton):not(.xLabelPositionRight){
+	>.xLabel~.xImage {
+		padding-left: 0px;
+	}
+}
+
+
+
+
+.xRoundButton {
+	
+	>* {
+		padding-left: 0px;
+		padding-right: 0px;
+		display: block;
+	}
+}
+
+
+.xSquareButton {
+	
+	display: inline-flex;
+	flex-direction: column;
+	>* {
+		height: 48px;
+		line-height: 48px;
+		display: block;
+		&:only-child {
+			height: 100%;
+			line-height: 80px;
+		}
+		&:not(.xImage) {
+			height: 30px;
+			line-height: 30px;
+			order: 2;
+		}
+	}
+}

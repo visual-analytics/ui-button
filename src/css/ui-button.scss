@@ -1,0 +1,800 @@
+/*
+Colorpaletter
+$mainColour:#2196F3;
+$mainTextColour:white;
+$mainColourSelected:transparant;
+$mainTextColourSelected:$mainColour;
+$flatColour=$mainColourSelected;
+$flatTextColour=$mainTextColourSelected;
+$inversedFlatColour=$flatColour;
+$inversedFlatTextColour=$mainTextColour;
+$flatSelectTextColour=#595959;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectHighLightTextColour=#2196F3;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectDownLightTextColour=#717171;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectedColour=$mainColour;
+$flatSelectedTextColour=$mainTextColour;
+*/
+/*colorpalette:
+normal: 500: #2196F3
+pressed: 700: #1976D2
+disabled text: 30% #FFFFFF : #d4d4d4
+disabled background: 12% #FFFFFF #1f1f1f
+focus:: 12% #000000 shade over color
+*/
+/*
+.xRaisedButton.xFlatButton{
+	background-color:transparent;
+	box-shadow: none;
+	color:#2196F3;
+}
+.xRaisedButton.xFlatButton:after{
+	background-color:rgba(150, 150, 150, .5);
+}
+
+.xRaisedButton.xFlatButton:hover:not(:disabled),
+.xFlatSegment>button.xFlatButton:hover:not(:disabled),
+.xRaisedButton.xFlatButton.testHover:not(:disabled){
+	background-color:#DFDFDF;
+	color:#1976D2;
+}*/
+/*general settings for button*/
+/*raised button properties*/
+/*raised button properties*/
+/*box shadow*/
+/*dense button is smaller so overrides standard raisedbutotn*/
+/*dense button is smaller so overrides standard raisedbutotn*/
+/*normal buttons */
+/*normal buttons */
+/*margins*/
+/*for segemented buttons*/
+/*inner padding on bLabel and bImage*/
+/*smaller button override for dense*/
+/*set order of label and image*/
+/*segmented button container should be row-flex*/
+/*dense button is smaller so overrides standard raisedbutotn*/
+/*for only child*/
+/*dense button is smaller so overrides standard raisedbutotn*/
+/*padding and positioning when label and image present*/
+/*effects for focus, click, disabled*/
+/*animation on click*/
+@keyframes ripple {
+	0% {
+		transform: scale(0, 0);
+		opacity: 1;
+	}
+	20% {
+		transform: scale(25, 25);
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: scale(40, 40);
+	}
+}
+/*TO DO focus and active does not work li, active seems to be too quick*/
+button {
+	vertical-align: top;
+	font-family: Roboto, Arial, Helvetica;
+}
+.xRaisedButton {
+	color: white;
+	background-color: #2196F3;
+	box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+	white-space: nowrap;
+	height: 36px;
+	cursor: pointer;
+	border: none;
+	border-width: 0px;
+	font-size: 14pt;
+	position: relative;
+	overflow: hidden;
+	margin-left: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 4px;
+	&:not(.xRoundButton) {
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 2px;
+		min-width: 64px;
+		&:focus {
+			&:not(:active) {
+				&:after {
+					animation: ripple 2s ease-out;
+				}
+			}
+		}
+	}
+	>* {
+		display: inline-block;
+		height: 100%;
+		padding-left: 8px;
+		padding-right: 8px;
+		text-align: center;
+		line-height: 36px;
+	}
+	&:not(.xSquareButton) {
+		&:not(.xLabelPositionRight) {
+			>.xLabel~.xImage {
+				padding-left: 0px;
+			}
+		}
+	}
+	&:focus {
+		opacity: 0.78;
+	}
+	&:not(:disabled) {
+		&:hover {
+			box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+		}
+	}
+	&:not(:disabled).testHover {
+		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
+	&:active {
+		background-color: #1976D2;
+	}
+	&:disabled {
+		background-color: #DFDFDF;
+		color: #9F9F9F;
+		box-shadow: none;
+		cursor: default;
+	}
+	&:after {
+		background-color: rgba(255, 255, 255, .5);
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		opacity: 0;
+		border-radius: 100%;
+		transform: scale(1, 1) translate(-50%);
+		transform-origin: 50% 50%;
+	}
+	&:not(.xRoundButton).testFocus {
+		&:not(:active) {
+			&:after {
+				animation: ripple 2s ease-out;
+			}
+		}
+	}
+}
+/*.xRaisedSegment {
+	>button {
+		color: white;
+		background-color: #2196F3;
+		white-space: nowrap;
+		height: 36px;
+		cursor: pointer;
+		border: none;
+		border-width: 0px;
+		font-size: 14pt;
+		position: relative;
+		overflow: hidden;
+		margin: 0px;
+		border-radius: 0px;
+		display: inline-block;
+		min-width: 0px;
+		box-shadow: none;
+		padding-right: 0px;
+		padding-left: 0px;
+		&:first-of-type {
+			border-radius: 2px 0px 0px 2px;
+			padding-left: 8px;
+		}
+		&:last-of-type {
+			border-radius: 0px 2px 2px 0px;
+			padding-right: 8px;
+		}
+		&:not(:first-of-type) {
+			border-left: 1px white solid;
+		}
+		>* {
+			display: inline-block;
+			height: 100%;
+			padding-left: 8px;
+			padding-right: 8px;
+			text-align: center;
+			line-height: 36px;
+		}
+		&:focus {
+			opacity: 0.78;
+			&:not(:active) {
+				&:after {
+					animation: ripple 2s ease-out;
+				}
+			}
+		}
+		&:active {
+			background-color: #1976D2;
+		}
+		&:disabled {
+			background-color: #DFDFDF;
+			color: #9F9F9F;
+			box-shadow: none;
+			cursor: default;
+		}
+		&:after {
+			background-color: rgba(255, 255, 255, .5);
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 5px;
+			height: 5px;
+			opacity: 0;
+			border-radius: 100%;
+			transform: scale(1, 1) translate(-50%);
+			transform-origin: 50% 50%;
+		}
+	}
+	>button[data-selected='true'] {
+		color: white;
+		background-color: #2196F3;
+	}
+	>button.xSelectButton {
+		&:not([data-selected='true']) {
+			color: #2196F3;
+			background-color: transparent;
+		}
+		&:not([data-selected='true'])~button.xSelectButton {
+			&:not([data-selected='true']) {
+				border-left: 1px #2196F3 solid;
+			}
+		}
+	}
+	box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.14), 0px 1px 7px 0px rgba(0,0,0,0.12), 0px 3px 1px -1px rgba(0,0,0,0.2);
+	border-radius: 2px;
+	min-width: 64px;
+	margin-left: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 4px;
+	border-width: 0px;
+	height: 36px;
+	display: inline-block;
+	white-space: nowrap;
+	padding: 0;
+	&:not(:disabled) {
+		&:hover {
+			box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+		}
+	}
+	>button.xLabelPositionRight {
+		>.xImage {
+			float: left;
+		}
+		>.xLabel~.xImage {
+			padding-right: 0px;
+		}
+	}
+	&:not(.xSquareSegments) {
+		>button {
+			&:not(.xLabelPositionRight) {
+				>.xLabel~.xImage {
+					padding-left: 0px;
+				}
+			}
+		}
+	}
+}*/
+.xRaisedButton[data-selected='true'] {
+	color: white;
+	background-color: #2196F3;
+}
+.xRaisedButton.xSelectButton {
+	&:not([data-selected='true']) {
+		color: #2196F3;
+		background-color: transparent;
+	}
+}
+.xFlatButton {
+	color: #2196F3;
+	background-color: transparent;
+	box-shadow: none;
+	white-space: nowrap;
+	height: 36px;
+	cursor: pointer;
+	border: none;
+	border-width: 0px;
+	font-size: 14pt;
+	position: relative;
+	overflow: hidden;
+	margin-left: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 4px;
+	&:not(.xRoundButton) {
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border-radius: 2px;
+		min-width: 64px;
+		&:focus {
+			&:not(:active) {
+				&:after {
+					animation: ripple 2s ease-out;
+				}
+			}
+		}
+	}
+	>* {
+		display: inline-block;
+		height: 100%;
+		padding-left: 8px;
+		padding-right: 8px;
+		text-align: center;
+		line-height: 36px;
+	}
+	&:not(.xSquareButton) {
+		&:not(.xLabelPositionRight) {
+			>.xLabel~.xImage {
+				padding-left: 0px;
+			}
+		}
+	}
+	&:not(.xInversedColor) {
+		&:focus {
+			opacity: 0.78;
+		}
+		&:hover {
+			&:not(:disabled) {
+				&:not(.xSelectButton) {
+					background-color: #DFDFDF;
+					color: #1976D2;
+				}
+			}
+		}
+		&:active {
+			&:not(:disabled) {
+				background-color: #CCCCCC;
+			}
+		}
+	}
+	&:not(.xInversedColor).testFocus {
+		opacity: 0.78;
+	}
+	&:not(.xInversedColor).testHover {
+		&:not(:disabled) {
+			&:not(.xSelectButton) {
+				background-color: #DFDFDF;
+				color: #1976D2;
+			}
+		}
+	}
+	&:not(.xInversedColor).testActive {
+		&:not(:disabled) {
+			background-color: #CCCCCC;
+		}
+	}
+	&:disabled {
+		color: #9F9F9F;
+		box-shadow: none;
+		cursor: default;
+	}
+	&:after {
+		background-color: rgba(150, 150, 150, .5);
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		opacity: 0;
+		border-radius: 100%;
+		transform: scale(1, 1) translate(-50%);
+		transform-origin: 50% 50%;
+	}
+}
+/*.xFlatSegment {
+	>button {
+		color: #2196F3;
+		background-color: transparent;
+		box-shadow: none;
+		white-space: nowrap;
+		height: 36px;
+		cursor: pointer;
+		border: none;
+		border-width: 0px;
+		font-size: 14pt;
+		position: relative;
+		overflow: hidden;
+		margin: 0px;
+		border-radius: 0px;
+		display: inline-block;
+		min-width: 0px;
+		box-shadow: none;
+		padding-right: 0px;
+		padding-left: 0px;
+		&:first-of-type {
+			border-radius: 2px 0px 0px 2px;
+			padding-left: 8px;
+		}
+		&:last-of-type {
+			border-radius: 0px 2px 2px 0px;
+			padding-right: 8px;
+		}
+		&:not(:first-of-type) {
+			border-left: 1px #2196F3 solid;
+		}
+		>* {
+			display: inline-block;
+			height: 100%;
+			padding-left: 8px;
+			padding-right: 8px;
+			text-align: center;
+			line-height: 36px;
+		}
+		&:disabled {
+			color: #9F9F9F;
+			box-shadow: none;
+			cursor: default;
+		}
+		&:after {
+			background-color: rgba(150, 150, 150, .5);
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 5px;
+			height: 5px;
+			opacity: 0;
+			border-radius: 100%;
+			transform: scale(1, 1) translate(-50%);
+			transform-origin: 50% 50%;
+		}
+		&:focus {
+			&:not(:active) {
+				&:after {
+					animation: ripple 2s ease-out;
+				}
+			}
+		}
+	}
+	>button.xSelectButton {
+		color: #595959;
+		&:not([data-selected='true']) {
+			&:hover {
+				&:not(:disabled) {
+					color: #1976D2;
+				}
+			}
+		}
+	}
+	>button.xSelectButton.xHighlight {
+		color: #2196F3;
+	}
+	>button.xSelectButton.xDownlight {
+		color: #717171;
+	}
+	>button.xSelectButton[data-selected='true'] {
+		color: white;
+		background-color: #2196F3;
+	}
+	border-radius: 2px;
+	min-width: 64px;
+	margin-left: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 4px;
+	border-width: 0px;
+	height: 36px;
+	display: inline-block;
+	white-space: nowrap;
+	padding: 0;
+	>button.xLabelPositionRight {
+		>.xImage {
+			float: left;
+		}
+		>.xLabel~.xImage {
+			padding-right: 0px;
+		}
+	}
+	&:not(.xSquareSegments) {
+		>button {
+			&:not(.xLabelPositionRight) {
+				>.xLabel~.xImage {
+					padding-left: 0px;
+				}
+			}
+		}
+	}
+	&:not(.xInversedColor) {
+		>button {
+			&:focus {
+				opacity: 0.78;
+			}
+			&:hover {
+				&:not(:disabled) {
+					&:not(.xSelectButton) {
+						background-color: #DFDFDF;
+						color: #1976D2;
+					}
+				}
+			}
+			&:active {
+				&:not(:disabled) {
+					background-color: #CCCCCC;
+				}
+			}
+		}
+	}
+}*/
+.xFlatButton.xInversedColor {
+	color: white;
+}
+/*.xFlatSegment.xInversedColor {
+	color: white;
+}*/
+.xFlatButton.xSelectButton {
+	color: #595959;
+	&:not([data-selected='true']) {
+		&:hover {
+			&:not(:disabled) {
+				color: #1976D2;
+			}
+		}
+	}
+	&:not([data-selected='true']).testHover {
+		&:not(:disabled) {
+			color: #1976D2;
+		}
+	}
+}
+.xFlatButton.xSelectButton.xHighlight {
+	color: #2196F3;
+}
+.xFlatButton.xSelectButton.xDownlight {
+	color: #717171;
+}
+.xFlatButton.xSelectButton[data-selected='true'] {
+	color: white;
+	background-color: #2196F3;
+}
+.xRaisedButton.xRoundButton {
+	overflow: visible;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border-radius: 100%;
+	width: 36px;
+	>* {
+		padding-left: 0px;
+		padding-right: 0px;
+		display: block;
+	}
+}
+.xFlatButton.xRoundButton {
+	overflow: visible;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border-radius: 100%;
+	width: 36px;
+	>* {
+		padding-left: 0px;
+		padding-right: 0px;
+		display: block;
+	}
+}
+.xRaisedButton.xDenseButton {
+	height: 32px;
+	font-size: 13pt;
+	>* {
+		line-height: 32px;
+	}
+}
+.xFlatButton.xDenseButton {
+	height: 32px;
+	font-size: 13pt;
+	>* {
+		line-height: 32px;
+	}
+}
+/*.xRaisedSegment.xDenseSegments {
+	>button {
+		height: 32px;
+		font-size: 13pt;
+		>* {
+			line-height: 32px;
+		}
+	}
+	height: 32px;
+}
+.xFlatSegment.xDenseSegments {
+	>button {
+		height: 32px;
+		font-size: 13pt;
+	}
+	height: 32px;
+}*/
+.xRaisedButton.xSquareButton {
+	height: 80px;
+	font-size: 11pt;
+	display: inline-flex;
+	flex-direction: column;
+	>* {
+		height: 48px;
+		line-height: 48px;
+		display: block;
+		&:only-child {
+			height: 100%;
+			line-height: 80px;
+		}
+		&:not(.xImage) {
+			height: 30px;
+			line-height: 30px;
+			order: 2;
+		}
+	}
+}
+.xFlatButton.xSquareButton {
+	height: 80px;
+	font-size: 11pt;
+	display: inline-flex;
+	flex-direction: column;
+	>* {
+		height: 48px;
+		line-height: 48px;
+		display: block;
+		&:only-child {
+			height: 100%;
+			line-height: 80px;
+		}
+		&:not(.xImage) {
+			height: 30px;
+			line-height: 30px;
+			order: 2;
+		}
+	}
+}
+/*.xRaisedSegment.xSquareSegments {
+	>button {
+		height: 80px;
+		font-size: 11pt;
+		display: inline-flex;
+		flex-direction: column;
+		>* {
+			height: 48px;
+			line-height: 48px;
+			display: block;
+			&:only-child {
+				height: 100%;
+				line-height: 80px;
+			}
+			&:not(.xImage) {
+				height: 30px;
+				line-height: 30px;
+				order: 2;
+			}
+		}
+	}
+	height: 80px;
+	display: inline-flex;
+	flex-direction: row;
+}*/
+/*.xFlatSegment.xSquareSegments {
+	>button {
+		height: 80px;
+		font-size: 11pt;
+		display: inline-flex;
+		flex-direction: column;
+		>* {
+			height: 48px;
+			line-height: 48px;
+			display: block;
+			&:only-child {
+				height: 100%;
+				line-height: 80px;
+			}
+			&:not(.xImage) {
+				height: 30px;
+				line-height: 30px;
+				order: 2;
+			}
+		}
+	}
+	height: 80px;
+	display: inline-flex;
+	flex-direction: row;
+}
+.xRaisedSegment.xDropdownSegment {
+	>button.xDropdown {
+		&:last-of-type {
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+	}
+}
+.xFlatSegment.xDropdownSegment {
+	>button.xDropdown {
+		&:last-of-type {
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+	}
+}*/
+/*.xRaisedSegment.xSquareSegments.xDropdownSegment {
+	>button.xDropdown {
+		&:last-of-type {
+			height: 100%;
+			line-height: 80px;
+			display: inline-block;
+			font-size: 14pt;
+		}
+	}
+}
+.xFlatSegment.xSquareSegments.xDropdownSegment {
+	>button.xDropdown {
+		&:last-of-type {
+			height: 100%;
+			line-height: 80px;
+			display: inline-block;
+			font-size: 14pt;
+		}
+	}
+}*/
+.xRaisedButton.xLabelPositionRight {
+	>.xImage {
+		float: left;
+	}
+	>.xLabel~.xImage {
+		padding-right: 0px;
+	}
+}
+.xFlatButton.xLabelPositionRight {
+	>.xImage {
+		float: left;
+	}
+	>.xLabel~.xImage {
+		padding-right: 0px;
+	}
+}
+.xRaisedButton.testFocus {
+	opacity: 0.78;
+}
+.xRaisedButton.testActive {
+	background-color: #1976D2;
+}
+.xRippleEffect {
+	&:focus {
+		&:not(:active) {
+			&:after {
+				animation: ripple 2s ease-out;
+			}
+		}
+	}
+	position: relative;
+	&:after {
+		background-color: rgba(150, 150, 150, .5);
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 20px;
+		height: 20px;
+		opacity: 0;
+		border-radius: 100%;
+		transform: scale(1, 1) translate(-50%);
+		transform-origin: 50% 50%;
+	}
+}
+.xRaisedButton:not(.xRoundButton):focus:not(:active):after,
+.xFlatButton:not(.xRoundButton):focus:not(:active):after,
+.xRaisedSegment>button:focus:not(:active):after,
+.xFlatSegment>button:focus:not(:active):after,
+.xRaisedButton:not(.xRoundButton).testFocus:not(:active):after,
+.xRippleEffect:focus:not(:active):after{
+
+  animation: ripple 2s ease-out;
+}

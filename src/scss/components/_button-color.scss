@@ -1,0 +1,49 @@
+//colors
+.xRaisedButton{
+	
+	color: white;
+	background-color: $main-color-button;
+	&:active{
+		background-color: $main-color-dark;
+	}
+	&.xSelectButton:not([data-selected='true']) {
+		color: $main-color-button;
+		background-color:white;
+	}
+	&:disabled{
+		background-color: $gray-light;
+		color: $gray;
+	}
+	&:focus {
+		opacity: 0.78;
+	}
+}
+
+.xFlatButton{
+	color: $main-color-button;
+	background-color:transparent;
+	&:active{
+		background-color:  $gray-light;
+	}
+	&.xSelectButton:not([data-selected='true']) {
+		color: $gray-dark;
+		background-color:white;
+		&:hover:not(:disabled) {
+			color:$main-color-dark;
+		}
+	}
+	&.xSelectButton[data-selected='true'] {
+		color: white;
+		background-color: $main-color-button;
+	}
+	&:hover:not(.xSelectButton):not(:disabled) {
+		background-color:$gray-light;
+	}
+	&:disabled{
+		background-color:transparent;
+		color: $gray;
+	}
+	&:focus/*:not(.xInversedColor)*/ {
+		opacity: 0.78;
+	}
+}
