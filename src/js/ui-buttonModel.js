@@ -58,10 +58,7 @@ UIButtonModel.prototype.setConfiguration=function(config){
 	//call parent
 	UIBaseModel.prototype.setConfiguration.call(this,config);
 	//make sure the type,shape,size,labelposition is how it should be
-	this.setType();
-	this.setShape();
-	this.setSize();
-	this.setLabelPosition();
+	this._checkConfigKeys();
 }
 UIButtonModel.prototype.setContent=function(key,value){
 	var changed=UIBaseModel.prototype.setContent.call(this,key,value)

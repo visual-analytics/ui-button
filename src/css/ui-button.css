@@ -1,3 +1,23 @@
+/*
+Colorpaletter
+$mainColour:#2196F3;
+$mainTextColour:white;
+$mainColourSelected:transparant;
+$mainTextColourSelected:$mainColour;
+$flatColour=$mainColourSelected;
+$flatTextColour=$mainTextColourSelected;
+$inversedFlatColour=$flatColour;
+$inversedFlatTextColour=$mainTextColour;
+$flatSelectTextColour=#595959;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectHighLightTextColour=#2196F3;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectDownLightTextColour=#717171;
+$flatSelectColour=$flatColour; //inherited
+$flatSelectedColour=$mainColour;
+$flatSelectedTextColour=$mainTextColour;
+*/
+
 
 /*colorpalette:
 normal: 500: #2196F3
@@ -459,4 +479,4 @@ button{
 	transform: scale(1, 1) translate(-50%);
 	transform-origin: 50% 50%;
 }
-/*TO DO focus and active does not work li, active seems te be to quick*/
+/*TO DO focus and active does not work li, active seems to be too quick*/

@@ -10,11 +10,26 @@ function UIButtonController(model,view){
 UIButtonController.prototype = Object.create(UIBaseController.prototype); // Here's where the inheritance occurs
 UIButtonController.prototype.constructor = UIBaseController;
 
+UIButtonController.prototype.addListeners=function(){
+	this.model.on("stateChanged",function(state){
+		this.view.setState(this.model.getState());
+		this.fire("change",state);
+	},this);
+	this.model.on("contentChanged",function(){
+		//test
+	},this);
+	this.view.on("click",function(){
+		this.model.onClick();
+	},this);
+}
+
 function buttonFactory(type,shape,size,options,containerElm,config,state,content){
 	var m= new UIButtonModel()
-	m.setType(type);
-	m.setShape(shape);
-	m.setSize(size);
+	m.setConfiguration({
+		type:type,
+		shape:shape,
+		size:size
+	})
 	m.setConfiguration(options);
 	var v=new UIButtonView(containerElm)
 	var c= new UIButtonController(m,v)

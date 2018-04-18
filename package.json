@@ -16,7 +16,7 @@
     "name": "Gregory Beirens",
     "email": "gregory.beirens@gmail.com"
   },
-  "main": "dist/ui-button.js",
+  "main": "dist/js/ui-button.js",
   "module": "index",
   "scripts": {
     "pretest": "rimraf dist  && rollup -c",
@@ -35,7 +35,7 @@
     "tape": "^4.9.0"
   },
   "dependencies": {
-    "@visual-analytics/ui-base": "^0.0.5",
+    "@visual-analytics/ui-base": "0.0.7",
     "xassist": "^1.1.2"
   },
   "repository": {

@@ -1,6 +1,6 @@
 "use strict"
 import { BaseView as UIBaseView } from "@visual-analytics/ui-base"
-import { EventDispatcher,dom} from "xassist"
+import { EventDispatcher,dom,object} from "xassist"
 
 function UIButtonView(containerElm){
 	
@@ -12,7 +12,7 @@ function UIButtonView(containerElm){
 //we lose the instance of, but this is a little tradeOff for the
 UIButtonView.prototype = Object.create(EventDispatcher.prototype); // Here's where the inheritance occurs
 //UIButtonView.prototype = Object.create(EventDispatcher.prototype); // Here's where the inheritance occurs
-Object.assign(UIButtonView.prototype, UIBaseView.prototype); // this instanceof UIBaseView===false!!!
+object(UIButtonView.prototype).assign(UIBaseView.prototype); // this instanceof UIBaseView===false!!!
 UIButtonView.prototype.constructor = UIButtonView;
 
 
@@ -32,13 +32,13 @@ UIButtonView.prototype.createElement=function(config,content){
 }
 UIButtonView.prototype.getContent=function(content,config){
 	var result=""
-	result+=(config.labelVisible? "<div class='bLabel'>"+content.label+"</div>":"");
+	result+=(config.labelVisible? "<div class='xLabel'>"+content.label+"</div>":"");
 	result+=(content.image!==""?this.createImage(content.image):"");
 	result+=(config.dropdown?this.createImage("",true):"");
 	return result;
 }
 UIButtonView.prototype.setLabel=function(labelText){
-	var cont=this.element.getElementsByClassName('bLabel');
+	var cont=this.element.getElementsByClassName('xLabel');
 	if(cont.length>0){
 		cont[0].innerHTML=labelText;
 	}
@@ -46,9 +46,9 @@ UIButtonView.prototype.setLabel=function(labelText){
 }
 UIButtonView.prototype.createImage=function(image,dropDown){
 	if(!dropDown){
-		return "<div class='bImage fa fa-"+image+"'></div>";
+		return "<div class='xImage fas fa-"+image+"'></div>";
 	}
-	return "<div class='bDropDownIcon fa fa-caret-down'></div>";
+	return "<div class='xDropDownIcon fas fa-caret-down'></div>";
 }
 UIButtonView.prototype.getClassName=function(config){
 	var className="";
@@ -70,8 +70,8 @@ UIButtonView.prototype.getClassName=function(config){
 	}
 	className+=(config.colorInverse?" xInversedColor":"");
 	className+=((config.labelPosition==="right" && config.shape==="normal")?" xLabelPositionRight":"");
-	className+=(config.selectable==="selectable"?" xSelectButton":"")	
-	className+=(config.dropdown==="dropdown"?" xDropdown":"");
+	className+=(config.selectable?" xSelectButton":"")	
+	className+=(config.dropdown?" xDropdown":"");
 	className+=(config.highlight?" xHighlight":"");
 	className+=(config.downlight?" xDownlight":"");
 	return className;
