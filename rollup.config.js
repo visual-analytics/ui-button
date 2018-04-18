@@ -1,3 +1,4 @@
+import scss from 'rollup-plugin-scss'
 const definition = require("./package.json");
 const dependencies = Object.keys(definition.dependencies || {});
 var endOfLine = require('os').EOL;
@@ -28,7 +29,12 @@ for (let i=0,len=args.length;i<len;i++){
 export default {
 	input: './index.js',
 	external: dependencies,
-	plugins:[],
+	plugins:[
+		scss({
+			output:definition.main.replace(/js/g,"css"),
+			failOnError: true,
+		})
+	],
 	output:{
 		extend: true,
 		file: definition.main,
