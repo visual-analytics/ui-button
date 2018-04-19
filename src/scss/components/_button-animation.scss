@@ -3,6 +3,9 @@
 	@extend %button-shadow;
 	@extend %animation-ripple;
 	@extend %animation-ripple-darkbackground;
+	&.xRoundButton{
+		@extend %animation-ripple-lightbackground;
+	}
 }
 .xFlatButton {
 	@extend %animation-ripple;
