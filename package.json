@@ -31,6 +31,7 @@
     "jsdom": "^11.8.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.56.3",
+    "rollup-plugin-copied": "^0.0.2",
     "rollup-plugin-scss": "^0.4.0",
     "tape": "^4.9.0"
   },
