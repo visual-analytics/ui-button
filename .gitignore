@@ -3,3 +3,4 @@
 *.stackdump
 node_modules
 coverage
+/src/test_code_module.txt
