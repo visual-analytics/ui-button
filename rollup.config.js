@@ -1,4 +1,5 @@
 import scss from 'rollup-plugin-scss'
+import copy from 'rollup-plugin-copied'
 const definition = require("./package.json");
 const dependencies = Object.keys(definition.dependencies || {});
 var endOfLine = require('os').EOL;
@@ -33,6 +34,14 @@ export default {
 		scss({
 			output:definition.main.replace(/js/g,"css"),
 			failOnError: true,
+		}),
+		copy({
+			from:"src/html",
+			to:"dist/html"
+		}),
+		copy({
+			from:"src/scss/vendor/fontawesome-free-5.0.10/webfonts",
+			to:"dist/assets/fonts/"
 		})
 	],
 	output:{
