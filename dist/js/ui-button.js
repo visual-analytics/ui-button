@@ -1,8 +1,8 @@
 /**
 * @preserve
-* https://github.com/visual-analytics/ui-button.git Version 0.0.4.
+* https://github.com/visual-analytics/ui-button.git Version 0.0.5.
 *  Copyright 2018 Gregory Beirens.
-*  Created on Sun, 22 Apr 2018 13:38:43 GMT.
+*  Created on Mon, 23 Apr 2018 07:46:37 GMT.
 */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@visual-analytics/ui-base'), require('xassist')) :
